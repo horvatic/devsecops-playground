@@ -15,7 +15,7 @@ pipeline {
         stage('Build Go') {
            steps {
               sh '''
-              go build -o hello go/cmd/main.go 
+              GOOS=darwin GOARCH=arm64 go build -o hello go/cmd/main.go
               mv hello /deployapp
               '''
            }
