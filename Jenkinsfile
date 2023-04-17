@@ -14,7 +14,10 @@ pipeline {
     stages {
         stage('Build Go') {
            steps {
-              sh 'go build go/cmd/main.go'
+              sh '''
+              go build -o hello go/cmd/main.go 
+              mv hello /deployapp
+              '''
            }
         }
         stage('Run Bash') {
