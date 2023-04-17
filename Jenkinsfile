@@ -12,9 +12,17 @@ pipeline {
     tools { go '1.20' }
     agent any
     stages {
-        stage('Build') {
+        stage('Build Go') {
            steps {
               sh 'go build go/cmd/main.go'
+           }
+        }
+        stage('Run Bash') {
+           steps {
+              sh '''
+              chmod +x ./bash/run.sh
+              ./bash/run.sh
+              '''
            }
         }
     }
