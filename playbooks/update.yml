@@ -1,0 +1,13 @@
+---
+- name: newfile 
+  hosts: all
+  strategy: free
+  remote_user: shawn
+
+  tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      upgrade: yes
+      update_cache: yes
+  - name: Reboot a Linux machine 
+    reboot:

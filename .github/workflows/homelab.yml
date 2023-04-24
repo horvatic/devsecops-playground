@@ -1,0 +1,16 @@
+   
+name: homelab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: [ self-hosted ]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: update
+      run: ansible-playbook --become -u "${{secrets.SUDO_USER}}" --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASS}} ansible_user=${{secrets.LOGIN_USER}} ansible_password=${{secrets.LOGIN_PASSWORD}}" playbooks/update.yml
